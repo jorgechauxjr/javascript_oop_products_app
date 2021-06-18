@@ -36,6 +36,8 @@ class UI {
         if(element.name === 'delete') {
             // console.log(element.parentElement.parentElement.parentElement)
             element.parentElement.parentElement.parentElement.remove();
+            // this es para seleccionar la misma clase, es decir UI
+            this.showMessage("Product Deleted Successfuly", "info");
         }
 
     }
@@ -87,4 +89,5 @@ document.getElementById("product-list").addEventListener("click", function(event
     // console.log(event.target)
     const ui = new UI();
     ui.deleteProduct(event.target);
+    // ui.showMessage("Product Deleted Successfuly", "danger");
 });
