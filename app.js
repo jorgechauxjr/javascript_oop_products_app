@@ -40,8 +40,17 @@ class UI {
 
     }
 
-    showMessage() {
-
+    showMessage(message, bootstrapCssClass) {
+        const div = document.createElement('div');
+        
+        // div.className = 'alert alert-' + bootstrapCssClass;
+        div.className = `alert alert-${bootstrapCssClass} mt-2`;
+        div.appendChild(document.createTextNode(message));
+        
+        // Show the message in the DOM
+        const container = document.querySelector('.container');
+        const app = document.querySelector('#App');
+        container.insertBefore(div, app);
     }
 }
 
@@ -61,7 +70,8 @@ document.getElementById("product-form").addEventListener("submit", function (eve
     addProduc, deleteProduct and show message*/
     const ui = new UI();
     ui.addProduct(product);
-    ui.resetForm()
+    ui.resetForm();
+    ui.showMessage("Product Added Successfuly", "success");
     
     // CANCEL DEFAULT REFRESH
     event.preventDefault();
