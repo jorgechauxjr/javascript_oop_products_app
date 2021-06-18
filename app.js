@@ -18,6 +18,7 @@ class UI {
                     <strong>Product</strong>: ${product.name}
                     <strong>Product Price</strong>: ${product.price}
                     <strong>Product Year</strong>: ${product.year}
+                    <a href="#" class="btn btn-danger" name="delete">Delete</a>
                 </div>
             </div>
         `;
@@ -31,7 +32,11 @@ class UI {
     }
 
 
-    deleteProduct() {
+    deleteProduct(element) {
+        if(element.name === 'delete') {
+            // console.log(element.parentElement.parentElement.parentElement)
+            element.parentElement.parentElement.parentElement.remove();
+        }
 
     }
 
@@ -42,6 +47,8 @@ class UI {
 
 // DOM EVENTS
 
+//  CAPTURE THE SUBMIT EVENT FROM THE FORM
+// The event submit is executed by the product-form
 document.getElementById("product-form").addEventListener("submit", function (event) {
 
     const productName = document.getElementById("pName").value;
@@ -59,4 +66,12 @@ document.getElementById("product-form").addEventListener("submit", function (eve
     // CANCEL DEFAULT REFRESH
     event.preventDefault();
 
+});
+
+// CAPTURE THE DELETE EVENT
+// The event delete is executed by the products-list (esta declarado en el html)
+document.getElementById("product-list").addEventListener("click", function(event) {
+    // console.log(event.target)
+    const ui = new UI();
+    ui.deleteProduct(event.target);
 });
