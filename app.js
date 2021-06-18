@@ -39,7 +39,6 @@ class UI {
             // this es para seleccionar la misma clase, es decir UI
             this.showMessage("Product Deleted Successfuly", "info");
         }
-
     }
 
     showMessage(message, bootstrapCssClass) {
@@ -74,6 +73,10 @@ document.getElementById("product-form").addEventListener("submit", function (eve
     /*object ui that obtains the methods from ui
     addProduc, deleteProduct and show message*/
     const ui = new UI();
+
+    if (productName === '' || price ==='' || year === '')
+        return ui.showMessage("Some fields are missing", "danger")
+
     ui.addProduct(product);
     ui.resetForm();
     ui.showMessage("Product Added Successfuly", "success");
